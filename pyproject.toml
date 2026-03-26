@@ -1,0 +1,20 @@
+[project]
+name = "lineartree"
+version = "0.3.6"
+description = "A python library to build Model Trees with Linear Models at the leaves."
+readme = "README.md"
+authors = [
+    { name = "Marco Cerliani", email = "cerlymarco@gmail.com" }
+]
+urls = { "github" = "https://github.com/cerlymarco/linear-tree" }
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.4.3",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
