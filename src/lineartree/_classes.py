@@ -11,7 +11,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 from sklearn.base import is_regressor
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.utils.validation import has_fit_parameter, check_is_fitted
+from sklearn.utils.validation import has_fit_parameter, check_is_fitted, validate_data
 
 from ._criterion import SCORING
 from ._criterion import mse, rmse, mae, poisson
@@ -694,12 +694,13 @@ class _LinearTree(BaseEstimator):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
             dtype='float32',
-            force_all_finite=True,
+            ensure_all_finite=True,
             ensure_2d=True,
             allow_nd=False,
             ensure_min_features=self.n_features_in_
@@ -733,12 +734,13 @@ class _LinearTree(BaseEstimator):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
             dtype='float32',
-            force_all_finite=True,
+            ensure_all_finite=True,
             ensure_2d=True,
             allow_nd=False,
             ensure_min_features=self.n_features_in_
@@ -983,12 +985,13 @@ class _LinearBoosting(TransformerMixin, BaseEstimator):
         """
         check_is_fitted(self, attributes='base_estimator_')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
             dtype='float32',
-            force_all_finite=True,
+            ensure_all_finite=True,
             ensure_2d=True,
             allow_nd=False,
             ensure_min_features=self.n_features_in_
