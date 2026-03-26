@@ -1,7 +1,7 @@
 import numpy as np
 
 from sklearn.base import ClassifierMixin, RegressorMixin
-from sklearn.utils.validation import check_is_fitted, _check_sample_weight
+from sklearn.utils.validation import check_is_fitted, _check_sample_weight, validate_data
 
 from ._classes import _predict_branch
 from ._classes import _LinearTree, _LinearBoosting, _LinearForest
@@ -166,7 +166,8 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
                              "got '{}'.".format(reg_criterions, self.criterion))
 
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=False,
@@ -204,7 +205,8 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
@@ -398,7 +400,8 @@ class LinearTreeClassifier(_LinearTree, ClassifierMixin):
                              "with predict_proba method.")
 
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=False,
@@ -431,7 +434,8 @@ class LinearTreeClassifier(_LinearTree, ClassifierMixin):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
@@ -473,7 +477,8 @@ class LinearTreeClassifier(_LinearTree, ClassifierMixin):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=False,
@@ -694,7 +699,8 @@ class LinearBoostRegressor(_LinearBoosting, RegressorMixin):
                              "got '{}'.".format(reg_losses, self.loss))
 
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=False,
@@ -912,7 +918,8 @@ class LinearBoostClassifier(_LinearBoosting, ClassifierMixin):
                              "with predict_proba method.")
 
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=False,
@@ -1197,7 +1204,8 @@ class LinearForestRegressor(_LinearForest, RegressorMixin):
         self : object
         """
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=True,
@@ -1235,7 +1243,8 @@ class LinearForestRegressor(_LinearForest, RegressorMixin):
         """
         check_is_fitted(self, attributes='base_estimator_')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=True,
@@ -1460,7 +1469,8 @@ class LinearForestClassifier(_LinearForest, ClassifierMixin):
         self : object
         """
         # Convert data (X is required to be 2d and indexable)
-        X, y = self._validate_data(
+        X, y = validate_data(
+            self,
             X, y,
             reset=True,
             accept_sparse=True,
@@ -1504,7 +1514,8 @@ class LinearForestClassifier(_LinearForest, ClassifierMixin):
         """
         check_is_fitted(self, attributes='base_estimator_')
 
-        X = self._validate_data(
+        X = validate_data(
+            self,
             X,
             reset=False,
             accept_sparse=True,
